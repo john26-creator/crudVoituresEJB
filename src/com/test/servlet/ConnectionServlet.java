@@ -46,6 +46,7 @@ public class ConnectionServlet extends HttpServlet{
 			if (isUserValid (formUser, dataBaseUser)) {
 				setUserSession(request, dataBaseUser);
 				setUserCookie(response, dataBaseUser);
+				
 				response.sendRedirect(VEHICULE_VUE);
 			}
 			else {

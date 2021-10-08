@@ -37,10 +37,7 @@ public final class RegisterForm {
         String email = getFieldValue( request, EMAIL_FIELD_NAME );
         String password = getFieldValue (request, PASSWORD_FIELD_NAME);
         
-        user = new User();
-        user.setName(name);      
-        user.setEmail( email );
-        user.setPassword(password);
+        user = new User(name, email, password);
 	}
 
 	private void validateFields () {

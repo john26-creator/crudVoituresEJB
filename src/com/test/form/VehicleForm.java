@@ -73,9 +73,6 @@ public final class VehicleForm {
 		String vehiculeType = getFieldValue( request, VEHICULE_TYPE_FIELD_NAME );
 
 		vehicule = new Vehicle();
-		vehicule.setBrand(brand);      
-		vehicule.setPlate(plate);
-		vehicule.setTypeVehicule(vehiculeType);
 
 		if(isCar(vehiculeType)) {
 			vehicule = new Car(brand, model, Integer.parseInt(year), color);
@@ -83,7 +80,10 @@ public final class VehicleForm {
 		else {
 			vehicule = new Moto(brand, model, Integer.parseInt(power));
 		}
+		
+		vehicule.setBrand(brand);      
 		vehicule.setPlate(plate);
+		vehicule.setTypeVehicule(vehiculeType);
 	}
 
 	private boolean isCar (String vehiculeType) {
@@ -111,7 +111,5 @@ public final class VehicleForm {
 	public Vehicle getVehicule() {
 		return this.vehicule;
 	}
-
-
 
 }

@@ -76,6 +76,7 @@ public class VehicleServlet extends HttpServlet {
 		
 		VehicleForm form = new VehicleForm (request);
 		Vehicle formVehicule = form.getVehicule();
+		
 		if (form.isValid()) {
 			vehiculeDao.save (formVehicule);
 		}

@@ -3,7 +3,7 @@
 	<persistence-unit name="bdd_PU" transaction-type="JTA">
     <jta-data-source>jdbc/hikaricp_resource</jta-data-source>
     <class>com.test.model.User</class>
-    <class>com.test.model.Vehicule</class>			
+    <class>com.test.model.Vehicle</class>			
     <class>com.test.model.Car</class>
     <class>com.test.model.Moto</class>
    </persistence-unit>

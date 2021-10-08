@@ -17,6 +17,8 @@ public class VehiculeDao {
 	@PersistenceContext( unitName = "bdd_PU" )
 	private EntityManager       em;
 
+	private static final String PLATE_PARAMETER = "immatriculation";
+	
 	private static final String SQL_SELECT_ALL = "SELECT v FROM Vehicule v;";
 	private static final String SQL_SELECT_BY_EMAT = "SELECT v FROM Vehicule v WHERE v.immatriculation=:immatriculation;";
 
@@ -34,7 +36,7 @@ public class VehiculeDao {
 	public void remove (String plateNumber) {
 		Query request = em.createQuery(SQL_SELECT_BY_EMAT);
 		
-		request.setParameter("immatriculation", plateNumber);
+		request.setParameter(PLATE_PARAMETER, plateNumber);
 		Vehicle vehicule = (Vehicle) request.getSingleResult();
 		
 		em.remove(vehicule);
