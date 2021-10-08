@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import com.test.model.Vehicule;
+import com.test.model.Vehicle;
 
 @Stateless
 public class VehiculeDao {
@@ -20,26 +20,28 @@ public class VehiculeDao {
 	private static final String SQL_SELECT_ALL = "SELECT v FROM Vehicule v;";
 	private static final String SQL_SELECT_BY_EMAT = "SELECT v FROM Vehicule v WHERE v.immatriculation=:immatriculation;";
 
-	public Map<String, Vehicule> findAll() throws  DaoException {
-
+	public Map<String, Vehicle> getVehicleMap() throws  DaoException {
 		Query request = em.createQuery(SQL_SELECT_ALL);
-		List <Vehicule> vehivules = request.getResultList();
-		Map <String,Vehicule> vehicules = new HashMap <String,Vehicule> ();
-		for (Vehicule vehicule : vehivules) {
+		List <Vehicle> vehicles = request.getResultList();
+		Map <String,Vehicle> vehicules = new HashMap <String,Vehicle> ();
+		
+		for (Vehicle vehicule : vehicles) {
 			vehicules.put(vehicule.getPlate(),vehicule);
 		}
 		return vehicules;
 	}
 
-	public void remove (String immatriculation) {
+	public void remove (String plateNumber) {
 		Query request = em.createQuery(SQL_SELECT_BY_EMAT);
-		request.setParameter("immatriculation", immatriculation);
-		Vehicule vehicule = (Vehicule) request.getSingleResult();
+		
+		request.setParameter("immatriculation", plateNumber);
+		Vehicle vehicule = (Vehicle) request.getSingleResult();
+		
 		em.remove(vehicule);
 		em.flush();
 	}
 
-	public void save (Vehicule vehicule) {
+	public void save (Vehicle vehicule) {
 		em.persist(vehicule);
 	}
 

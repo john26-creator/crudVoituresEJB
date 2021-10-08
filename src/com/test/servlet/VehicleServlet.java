@@ -13,11 +13,11 @@ import javax.servlet.http.HttpSession;
 
 import com.test.dao.UserDao;
 import com.test.dao.VehiculeDao;
-import com.test.form.VehiculeForm;
-import com.test.model.Vehicule;
+import com.test.form.VehicleForm;
+import com.test.model.Vehicle;
 
 @WebServlet( urlPatterns = { "/vehicules/*" } )
-public class VehiculeServlet extends HttpServlet {
+public class VehicleServlet extends HttpServlet {
 	
 	public static final String USERID_SESSION_NAME = "userId";
 	public static final String PLATE_PARAM = "plate";
@@ -58,7 +58,7 @@ public class VehiculeServlet extends HttpServlet {
 	}
 	
 	private void setVehiculeVueAttributes (HttpServletRequest request, Integer userId) {
-		Map <String,Vehicule> vehicules = vehiculeDao.findAll();
+		Map <String,Vehicle> vehicules = vehiculeDao.getVehicleMap();
 		String userName = utilisateurDao.findById(userId).getName();
 		String message = "HELLO" + userName;
 		
@@ -74,14 +74,14 @@ public class VehiculeServlet extends HttpServlet {
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		VehiculeForm form = new VehiculeForm (request);
-		Vehicule formVehicule = form.getVehicule();
+		VehicleForm form = new VehicleForm (request);
+		Vehicle formVehicule = form.getVehicule();
 		if (form.isValid()) {
 			vehiculeDao.save (formVehicule);
 		}
 		
-		Map<String, Vehicule> vehicules = null;
-		vehicules = vehiculeDao.findAll();
+		Map<String, Vehicle> vehicules = null;
+		vehicules = vehiculeDao.getVehicleMap();
 		
 		request.setAttribute(VEHICULE_PARAM_NAME, vehicules);
 		this.getServletContext().getRequestDispatcher(VEHICULES_VUE).forward(request, response);

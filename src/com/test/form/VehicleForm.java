@@ -8,19 +8,19 @@ import javax.servlet.http.HttpServletRequest;
 import com.google.common.base.Strings;
 import com.test.model.Car;
 import com.test.model.Moto;
-import com.test.model.Vehicule;
+import com.test.model.Vehicle;
 
-public final class VehiculeForm {
+public final class VehicleForm {
 
-	public static final String PLATE_FIELD_NAME       = "plate";
-	public static final String BRAND_FIELD_NAME     = "brand";
-	public static final String MODEL_FIELD_NAME  = "model";
-	public static final String COLOR_FIELD_NAME       = "color";
-	public static final String POWER_FIELD_NAME     = "power";
+	public static final String PLATE_FIELD_NAME = "plate";
+	public static final String BRAND_FIELD_NAME = "brand";
+	public static final String MODEL_FIELD_NAME = "model";
+	public static final String COLOR_FIELD_NAME = "color";
+	public static final String POWER_FIELD_NAME = "power";
 	public static final String YEAR_FIELD_NAME  = "year";
 	public static final String VEHICULE_TYPE_FIELD_NAME  = "year";
 
-	Vehicule vehicule;
+	Vehicle vehicule;
 
 	private String              stateMessage;
 	private Map<String, String> errors         = new HashMap<String, String>();
@@ -33,7 +33,7 @@ public final class VehiculeForm {
 		return stateMessage;
 	}
 
-	public VehiculeForm (HttpServletRequest request) {
+	public VehicleForm (HttpServletRequest request) {
 
 		createVehicule (request);
 		validateFields();
@@ -72,7 +72,7 @@ public final class VehiculeForm {
 		String year = getFieldValue( request, YEAR_FIELD_NAME );
 		String vehiculeType = getFieldValue( request, VEHICULE_TYPE_FIELD_NAME );
 
-		vehicule = new Vehicule();
+		vehicule = new Vehicle();
 		vehicule.setBrand(brand);      
 		vehicule.setPlate(plate);
 		vehicule.setTypeVehicule(vehiculeType);
@@ -100,6 +100,7 @@ public final class VehiculeForm {
 	
 	private static String getFieldValue (HttpServletRequest request, String fieldName) {
 		String value = request.getParameter (fieldName);
+		
 		if (Strings.isNullOrEmpty(value)) {
 			return null;
 		} else {
@@ -107,7 +108,7 @@ public final class VehiculeForm {
 		}
 	}
 
-	public Vehicule getVehicule() {
+	public Vehicle getVehicule() {
 		return this.vehicule;
 	}
 

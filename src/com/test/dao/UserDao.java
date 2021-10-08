@@ -17,18 +17,20 @@ public class UserDao {
 	@PersistenceContext( unitName = "bdd_PU" )
 	private EntityManager       em;
 
-	public void save( User utilisateur ) throws DaoException {
-			em.persist( utilisateur );
+	public void save( User user ) throws DaoException {
+		em.persist( user );
 	}
 
 	public User findByEmail( String email ) throws DaoException {
 		Query query = em.createQuery( SELECT_BY_EMAIL_QUERY );
+		
 		query.setParameter( EMAIL_PARAM, email );
 		return (User) query.getSingleResult();
 	}
 
 	public User findById (Integer id) {
 		Query query = em.createQuery( SELECT_BY_ID_QUERY );
+		
 		query.setParameter( ID_PARAM, id );
 		return (User) query.getSingleResult();
 	}

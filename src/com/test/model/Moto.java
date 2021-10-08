@@ -4,36 +4,27 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
 @Entity
 @DiscriminatorValue("moto")
-public class Moto extends Vehicule {
-	
+public class Moto extends Vehicle {
+
 	@Column(name="puissance")
 	private int power;
-	
+
 	public Moto() {}
-	
+
 	public Moto(String brand, String model, int power) {
 		super("moto", brand, model, 2);
-		this.setPower(power);
-	}
-	
-	public int getPower() {
-		return power;
-	}
-
-	public void setPower(int power) {
 		this.power = power;
-	}
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Moto[")
-			.append(super.toString())
-			.append(", puissance=").append(power)
-			.append("]");
-		return builder.toString();
 	}
 
 }

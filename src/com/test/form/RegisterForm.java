@@ -97,6 +97,4 @@ public final class RegisterForm {
 		return user;
 	}
     
-    
-    
 }

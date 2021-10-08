@@ -265,5 +265,6 @@
 	<classpathentry kind="lib" path="C:/glassfish3/glassfish/modules/weld-osgi-bundle.jar"/>
 	<classpathentry kind="lib" path="C:/glassfish3/glassfish/modules/woodstox-core-asl.jar"/>
 	<classpathentry kind="lib" path="C:/glassfish3/glassfish/modules/work-management.jar"/>
+	<classpathentry kind="lib" path="/TestServletJPA - Dirty/WebContent/WEB-INF/lib/lombok.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
